@@ -8,4 +8,8 @@ class Statement
     @account = account
   end
 
+  def table_title
+    puts "date || credit || debit || balance"
+  end
+
 end
