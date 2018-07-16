@@ -13,6 +13,8 @@ class Account
   end
 
   def withdraw(money)
+    message = "Insufficient funds"
+    raise message if money > @balance
     @balance -= money
   end
 
