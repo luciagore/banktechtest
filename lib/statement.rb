@@ -1,22 +1,21 @@
-require 'date'
+# frozen_string_literal: true
 
 class Statement
-
-  attr_accessor :account
+  attr_reader :account, :previous_transactions
 
   def initialize(account = Account.new)
     @account = account
+    @previous_transactions = []
   end
 
   def table_title
-    puts "date || credit || debit || balance"
+    @previous_transactions << "date || credit || debit || balance\n"
   end
 
   def transaction_list(transactions = @account.transactions)
-    transactions.each do |entry|
-      puts "#{entry[:date]} || #{entry[:credit]} || #{entry[:debit]} || #{entry[:balance]}"
+    transactions.reverse.each do |entry|
+      @previous_transactions << \
+        "#{entry[:date]} || #{entry[:credit]} || #{entry[:debit]} || #{entry[:balance]}"
     end
-
   end
-
 end
