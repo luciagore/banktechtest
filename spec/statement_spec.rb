@@ -12,13 +12,6 @@ describe Statement do
     ]
   end
 
-  it 'creates a title row for the statement' do
-    statement.table_title
-    expect(statement.previous_transactions).to include(
-      "date || credit || debit || balance\n"
-    )
-  end
-
   it 'creates a list of each transaction from the account' do
     statement.transaction_list(transactions)
     expect(statement.previous_transactions).to include(

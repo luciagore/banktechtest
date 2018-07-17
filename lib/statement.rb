@@ -8,10 +8,6 @@ class Statement
     @previous_transactions = []
   end
 
-  def table_title
-    @previous_transactions << "date || credit || debit || balance\n"
-  end
-
   def transaction_list(transactions = @account.transactions)
     transactions.reverse.each do |entry|
       @previous_transactions << \
