@@ -18,7 +18,7 @@ class Statement
   end
 
   def print_statement
-    self.transaction_list
+    transaction_list
     @printer.print_statement(@previous_transactions)
   end
 end
