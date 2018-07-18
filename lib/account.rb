@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative 'today'
 
 class Account
   START_BALANCE = 0
@@ -10,17 +11,17 @@ class Account
     @transactions = []
   end
 
-  def deposit(money)
+  def deposit(money, date = Today.new)
     @balance += money
     @transactions << (
-      { date: Time.new.strftime('%d-%m-%Y'), credit: money, debit: nil, balance: @balance })
+      { date: date.date_today, credit: money, debit: nil, balance: @balance })
   end
 
-  def withdraw(money)
+  def withdraw(money, date = Today.new)
     message = 'Insufficient funds'
     raise message if money.abs > @balance
     @balance -= money
     @transactions << (
-      { date: Time.new.strftime('%d-%m-%Y'), credit: nil, debit: money, balance: @balance })
+      { date: date.date_today, credit: nil, debit: money, balance: @balance })
   end
 end

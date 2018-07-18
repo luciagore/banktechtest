@@ -1,17 +1,24 @@
 # As a user
-# So that I can see the transactions ordered on a page
-# I can print a statement of my transactions.
+# So that I can put money in my account
+# I can make a deposit
 
-describe "Printing a statement of transactions" do
+# As a user
+# So that I can use money from my account
+# I can make a deposit
+require './lib/account.rb'
+
+describe "Using an account to withdraw and deposit funds" do
 
   subject(:account) { Account.new }
-  subject(:statement) { Statement.new }
-  subject(:printer) { Printer.new }
 
-  it "shows a list of transactions, with their dates and rolling balance" do
+  it "shows an account can have funds added to the balance" do
     account.deposit(150)
-    account.withdraw(55)
-    statement.transaction_list(account.transactions)
-    expect { printer.print_statement(statement.previous_transactions) }.to output("date || credit || debit || balance\n17-07-2018 ||  || 55 || 95\n17-07-2018 || 150 ||  || 150\n").to_stdout
+    expect(account.balance).to be(150)
+  end
+
+  it "shows an account can have funds withdrawn from the balance" do
+    account.deposit(20)
+    account.withdraw(10)
+    expect(account.balance).to be(10)
   end
 end

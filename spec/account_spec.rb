@@ -32,14 +32,16 @@ describe Account do
     end
 
     it 'stores the date and amount for each deposit/withdrawal' do
-      account.deposit(100)
+      date = double("Today")
+      allow(date).to receive(:date_today).and_return "10-07-2018"
+      account.deposit(100, date)
       expect(account.transactions).to eq(
-        [{ date: '17-07-2018', credit: 100, debit: nil, balance: 100 }]
+        [{ date: "10-07-2018", credit: 100, debit: nil, balance: 100 }]
       )
-      account.withdraw(20)
+      account.withdraw(20, date)
       expect(account.transactions).to eq(
-        [{ date: '17-07-2018', credit: 100, debit: nil, balance: 100 },
-         { date: '17-07-2018', credit: nil, debit: 20, balance: 80 }]
+        [{ date: "10-07-2018", credit: 100, debit: nil, balance: 100 },
+         { date: "10-07-2018", credit: nil, debit: 20, balance: 80 }]
       )
     end
   end
