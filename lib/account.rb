@@ -12,16 +12,16 @@ class Account
   end
 
   def deposit(money, date = Today.new)
-    @balance += money
+    @balance += sprintf('%.2f', money).to_f
     @transactions << (
-      { date: date.date_today, credit: money, debit: nil, balance: @balance })
+      { date: date.date_today, credit: sprintf('%.2f', money), debit: nil, balance: sprintf('%.2f', @balance) })
   end
 
   def withdraw(money, date = Today.new)
     message = 'Insufficient funds'
     raise message if money.abs > @balance
-    @balance -= money
+    @balance -= sprintf('%.2f', money).to_f
     @transactions << (
-      { date: date.date_today, credit: nil, debit: money, balance: @balance })
+      { date: date.date_today, credit: nil, debit: sprintf('%.2f', money), balance: sprintf('%.2f', @balance) })
   end
 end

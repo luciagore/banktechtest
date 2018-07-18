@@ -13,12 +13,12 @@ describe "Using an account to withdraw and deposit funds" do
 
   it "shows an account can have funds added to the balance" do
     account.deposit(150)
-    expect(account.balance).to be(150)
+    expect(account.balance).to be(150.00)
   end
 
   it "shows an account can have funds withdrawn from the balance" do
     account.deposit(20)
     account.withdraw(10)
-    expect(account.balance).to be(10)
+    expect(account.balance).to be(10.00)
   end
 end

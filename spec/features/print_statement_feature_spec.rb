@@ -14,6 +14,6 @@ describe "Printing a statement of transactions" do
     account.deposit(150)
     account.withdraw(55)
     statement.transaction_list(account.transactions)
-    expect { printer.print_statement(statement.previous_transactions) }.to output("date || credit || debit || balance\n10-07-2018 ||  || 55 || 95\n10-07-2018 || 150 ||  || 150\n").to_stdout
+    expect { printer.print_statement(statement.previous_transactions) }.to output("date || credit || debit || balance\n10-07-2018 ||  || 55.00 || 95.00\n10-07-2018 || 150.00 ||  || 150.00\n").to_stdout
   end
 end
