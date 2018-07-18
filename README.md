@@ -1,6 +1,6 @@
 # Instructions
 1. First you need to clone this repo into the terminal and run `bundle install` to make sure all dependencies are installed.
-2. Go into irb,  type `require './lib/account.rb'` to access the files. Do the same for `statement.rb` and `printer.rb`.
+2. Go into irb,  type `require './lib/account.rb'` to access the files. Do the same for `statement.rb`.
 3. Create a new account - e.g. `account = Account.new`
 4. Add a transaction - e.g. `account.deposit(5)`
 5. Create a new statement (making sure to pass in the account you've created) - e.g. `statement = Statement.new(account)`
