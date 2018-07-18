@@ -7,8 +7,8 @@ describe Statement do
 
   let(:transactions) do
     [
-      { date: '16-07-2018', credit: 100.00, debit: nil, balance: 100.00 },
-      { date: '16-07-2018', credit: nil, debit: 20.00, balance: 80.00 }
+      { date: '16-07-2018', credit: sprintf('%.2f', 100), debit: nil, balance: sprintf('%.2f', 100) },
+      { date: '16-07-2018', credit: nil, debit: sprintf('%.2f', 20), balance: sprintf('%.2f', 80) }
     ]
   end
 
