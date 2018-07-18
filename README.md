@@ -36,7 +36,7 @@ I then decided that although I could create a method in the Account Class to reo
 
 To implement the final User Story I created a Printer Class which takes the reordered transaction list - and puts it to the console, after having first given the title row provided to us of `"date || credit || debit || balance\n"`.
 
-##Refactoring
+## Refactoring
 
 To begin with you had to access the printer in order to print the statement, which was not a very good user experience - to fix this I created a `print_statement` method within the Statement class, which accesses the Printer class. This makes it much easier to use!
 
