@@ -35,14 +35,13 @@ describe Account do
       date = double("Today")
       allow(date).to receive(:date_today).and_return "10-07-2018"
       account.deposit(100, date)
-      p account.transactions, "hello"
       expect(account.transactions).to eq(
-        [{ date: "10-07-2018", credit: 100.00, debit: nil, balance: 100.000 }]
+        [{ date: "10-07-2018", credit: sprintf('%.2f', 100), debit: nil, balance: sprintf('%.2f', 100) }]
       )
       account.withdraw(20, date)
       expect(account.transactions).to eq(
-        [{ date: "10-07-2018", credit: 100.00, debit: nil, balance: 100.00 },
-         { date: "10-07-2018", credit: nil, debit: 20.00, balance: 80.00 }]
+        [{ date: "10-07-2018", credit: sprintf('%.2f', 100), debit: nil, balance: sprintf('%.2f', 100) },
+         { date: "10-07-2018", credit: nil, debit: sprintf('%.2f', 20), balance: sprintf('%.2f', 80) }]
       )
     end
   end
