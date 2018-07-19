@@ -21,4 +21,9 @@ describe "Using an account to withdraw and deposit funds" do
     account.withdraw(10)
     expect(account.balance).to be(10.00)
   end
+
+  it "shows an account cannot be overdrawn" do
+    account.deposit(20)
+    expect{ account.withdraw(50) }.to raise_error("Insufficient funds")
+  end
 end
