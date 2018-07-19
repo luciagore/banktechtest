@@ -3,13 +3,18 @@
 require './lib/statement.rb'
 
 describe Statement do
-  subject(:statement) { described_class.new }
+  let(:account) { double :account }
+  let(:printer) { double :printer }
+  subject(:statement) { described_class.new(account, printer) }
 
   let(:transactions) do
     [
       { date: '16-07-2018', credit: sprintf('%.2f', 100), debit: nil, balance: sprintf('%.2f', 100) },
       { date: '16-07-2018', credit: nil, debit: sprintf('%.2f', 20), balance: sprintf('%.2f', 80) }
     ]
+  end
+  let(:transactionstoo) do
+    "date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n"
   end
 
   it 'creates a list of each transaction from the account' do
@@ -19,14 +24,9 @@ describe Statement do
     )
   end
 
-  it 'prints the statement to the console' do
-    account = double("Account")
-    printer = double("Printer")
+  it 'makes the printer print the statement to the console' do
     allow(account).to receive(:transactions).and_return(transactions)
-    allow(printer).to receive(:print_statement).and_return("date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n")
-    statement.transaction_list(account.transactions)
-    expect { statement.print_statement }.to output(
-      "date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n"
-    ).to_stdout
+    expect(printer).to receive(:print_statement)
+    statement.print_statement
   end
 end
