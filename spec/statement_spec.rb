@@ -21,7 +21,9 @@ describe Statement do
 
   it 'prints the statement to the console' do
     account = double("Account")
+    printer = double("Printer")
     allow(account).to receive(:transactions).and_return(transactions)
+    allow(printer).to receive(:print_statement).and_return("date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n")
     statement.transaction_list(account.transactions)
     expect { statement.print_statement }.to output(
       "date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n"
