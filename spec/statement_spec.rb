@@ -20,7 +20,9 @@ describe Statement do
   end
 
   it 'prints the statement to the console' do
-    allow_any_instance_of(Account).to receive(:transactions).and_return(transactions)
+    account = double("Account")
+    allow(account).to receive(:transactions).and_return(transactions)
+    statement.transaction_list(account.transactions)
     expect { statement.print_statement }.to output(
       "date || credit || debit || balance\n16-07-2018 ||  || 20.00 || 80.00\n16-07-2018 || 100.00 ||  || 100.00\n"
     ).to_stdout
